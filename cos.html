@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тригонометрический калькулятор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 10px);
+            height: 40px;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="button"] {
+            width: calc(25% - 10px);
+            height: 40px;
+            margin: 5px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            outline: none;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="button"]:active {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <br>
+        <input type="button" value="sin" onclick="trigFunction('sin')">
+        <input type="button" value="cos" onclick="trigFunction('cos')">
+        <input type="button" value="tan" onclick="trigFunction('tan')">
+        <input type="button" value="ctan" onclick="trigFunction('ctan')">
+        <br>
+        <input type="button" value="C" onclick="clearDisplay()">
+    </div>
+    <script>
+        function trigFunction(func) {
+            var angle = parseFloat(prompt("Введите угол в градусах:"));
+            if (!isNaN(angle)) {
+                var result;
+                switch (func) {
+                    case 'sin':
+                        result = Math.sin(angle * (Math.PI / 180));
+                        break;
+                    case 'cos':
+                        result = Math.cos(angle * (Math.PI / 180));
+                        break;
+                    case 'tan':
+                        result = Math.tan(angle * (Math.PI / 180));
+                        break;
+                    case 'ctan':
+                        result = 1 / Math.tan(angle * (Math.PI / 180));
+                        break;
+                }
+                document.getElementById("display").value = result.toFixed(4);
+            } else {
+                alert("Неправильный ввод. Пожалуйста, введите число.");
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+    </script>
+    <a href="./index.html">Обичний калькулятор</a>
+</body>
+
+</html>
